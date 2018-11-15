@@ -20,7 +20,7 @@ const typeDefs =  `
         name: String,
         fullName : String,
         lastName: String,
-        courses: Courses,
+        courses: [Courses],
         email: String
     }
 
@@ -32,6 +32,11 @@ const typeDefs =  `
     type Query {
         students: [Student]
         courses: [Courses]
+        hello(name: String!):
+    }
+    
+    type Message{
+        message: String
     }
 `
 const resolvers = {
@@ -41,6 +46,9 @@ const resolvers = {
         },
         students(root, args , contexto){
             return stdents;
+        },
+        hello(root, args, contexto){
+            return { message :`Hello , ${args.name}`}
         }
     },
     Student: {
